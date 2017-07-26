@@ -19,6 +19,15 @@ export class CustomerComponent implements OnInit {
             sendCatalog: new FormControl(true)
         });
     }
+    
+    populateTestData(): void {
+        this.customerForm.setValue({
+            firstName : 'Peter',
+            lastName: "Harken",
+            email: 'peter@harken.com',
+            sendCatalog: false
+        });
+    }
 
     save() {
         console.log(this.customerForm);
