@@ -163,8 +163,8 @@
                 </div>
                 
                 <div *ngIf="customerForm.get('sendCatalog').value">
-                    <div formArrayName="addresses">
-                        <div formGroupName="0">
+                    <div formArrayName="addresses" *ngFor="let address of addresses.controls; let i=index">
+                        <div [formGroupName]="i">
                             <div class="form-group" >
                                 <label class="col-md-2 control-label">Address Type</label>
                                 <div class="col-md-8">
@@ -185,11 +185,11 @@
 
                             <div class="form-group">
                                 <label class="col-md-2 control-label" 
-                                    for="street1Id">Street Address 1</label>
+                                    attr.for= "{{'street1Id' + i }}">Street Address 1</label>
                                 <div class="col-md-8">
                                     <input type="text" 
                                         class="form-control" 
-                                        id="street1Id" 
+                                        id="{{'street1Id' + i }}" 
                                         placeholder="Street address"
                                         formControlName="street1">
                                 </div>
