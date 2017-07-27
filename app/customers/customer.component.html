@@ -162,24 +162,21 @@
                     </div>
                 </div>
                 
-                <!-- <div *ngIf="customerForm.get('sendCatalog')">
+                <div *ngIf="customerForm.get('sendCatalog').value">
                     <div class="form-group" >
                         <label class="col-md-2 control-label">Address Type</label>
                         <div class="col-md-8">
                                 <label class="radio-inline">
                                     <input type="radio" id="addressType1Id" value="home"
-                                           [(ngModel)]="customer.addressType"
-                                           name="addressType">Home
+                                           formControlName="addressType">Home
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" id="addressType1Id" value="work"
-                                           [(ngModel)]="customer.addressType"
-                                           name="addressType">Work
+                                           formControlName="addressType">Work
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" id="addressType1Id" value="other"
-                                           [(ngModel)]="customer.addressType"
-                                           name="addressType">Other
+                                           formControlName="addressType">Other
                                 </label>
                         </div>
                     </div>
@@ -192,8 +189,7 @@
                                    class="form-control" 
                                    id="street1Id" 
                                    placeholder="Street address"
-                                   [(ngModel)]="customer.street1"
-                                   name="street1">
+                                   formControlName="street1">
                         </div>
                     </div>
 
@@ -205,8 +201,7 @@
                                    class="form-control" 
                                    id="street2Id"
                                    placeholder="Street address (second line)"
-                                   [(ngModel)]="customer.street2"
-                                   name="street2">
+                                   formControlName="street2">
                         </div>
                     </div>
 
@@ -218,14 +213,12 @@
                                    class="form-control" 
                                    id="cityId" 
                                    placeholder="City"
-                                   [(ngModel)]="customer.city"
-                                   name="city">
+                                   formControlName="city">
                         </div>
                         <div class="col-md-3">
                             <select class="form-control"
                                     id="stateId"
-                                    [(ngModel)]="customer.state"
-                                    name="state">
+                                    formControlName="state">
                                 <option value="" disabled selected hidden>Select a State...</option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
@@ -233,6 +226,8 @@
                                 <option value="AR">Arkansas</option>
                                 <option value="CA">California</option>
                                 <option value="CO">Colorado</option>
+                                <option value="MA">Massachusetts</option>
+                                <option value="ME">Maine</option>
                                 <option value="WI">Wisconsin</option>
                                 <option value="WY">Wyoming</option>
                             </select>
@@ -242,11 +237,10 @@
                                    class="form-control" 
                                    id="zipId" 
                                    placeholder="Zip Code"
-                                   [(ngModel)]="customer.zip"
-                                   name="zip">
+                                   formControlName="zip">
                         </div>
                     </div>
-                </div> -->
+                </div>
 
                 <div class="form-group">
                     <div class="col-md-4 col-md-offset-2">
