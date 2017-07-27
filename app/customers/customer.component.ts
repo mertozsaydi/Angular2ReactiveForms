@@ -44,7 +44,7 @@ export class CustomerComponent implements OnInit {
     get addresses(): FormArray{
         return<FormArray>this.customerForm.get('addresses');
     }
-    
+
     private validationMessages = {
         required: 'Please enter your email address.',
         pattern: 'Please enter a valid email address'
@@ -73,6 +73,10 @@ export class CustomerComponent implements OnInit {
         const emailControl = this.customerForm.get('emailGroup.email');
         emailControl.valueChanges.debounceTime(1000).subscribe(value =>
             this.setMessage(emailControl));
+    }
+
+    addAddress(): void {
+        this.addresses.push(this.buildAddress());
     }
 
     buildAddress(): FormGroup{
