@@ -3,6 +3,22 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn } from
 
 import { Customer } from './customer';
 
+function emailMatcher(c: AbstractControl) {
+    let emailControl = c.get('email');
+    let confirmControl = c.get('confirmEmail');
+    
+    // A control is pristine if the user has not changed the value in the UI
+    if (emailControl.pristine || confirmControl.pristine){
+        return null;
+    }
+
+    if (emailControl.value === confirmControl.value){
+        return null;
+    }
+    return {'match': true};
+}
+
+
 function ratingRange(min: number, max: number): ValidatorFn{
 
     return (c: AbstractControl): {[key: string]: boolean} | null => {
@@ -13,8 +29,6 @@ function ratingRange(min: number, max: number): ValidatorFn{
         return null;
     }
 }
-
-
 
 @Component({
     selector: 'my-signup',
@@ -30,7 +44,10 @@ export class CustomerComponent implements OnInit {
         this.customerForm = this.fb.group({
             firstName: ['', [Validators.required, Validators.minLength(3)]],
             lastName: ['', [Validators.required, Validators.maxLength(50)]],
-            email: ['',[Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+" )]],
+            emailGroup: this.fb.group ({
+                email: ['',[Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+" )]],
+                confirmEmail: ['', Validators.required]                
+            }, {validator : emailMatcher}),           
             phone: '',
             notification: 'email',
             rating: ['', ratingRange(1,5)],
